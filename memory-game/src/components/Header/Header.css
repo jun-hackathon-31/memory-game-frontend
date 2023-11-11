@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.moves {
+    display: inline-block;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.reset-button {
+    background-color: transparent;
+    padding: 0.5rem;
+    border: none;
+    transition: 0.3s ease;
+}
+
+.reset-button:hover {
+    border: none;
+    transform: rotate(20deg);
+}
+
+.reset-button img {
+    width: 30px;
+    height: 30px;
+}
