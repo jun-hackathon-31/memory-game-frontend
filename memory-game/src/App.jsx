@@ -1,13 +1,12 @@
 import './App.css'
-import {Button} from 'react-bootstrap'
+import Field from './components/Field/Field'
 
 function App() {
 
   return (
-    <>
-      <h1>Hello! It&lsquo;s memory game</h1>
-      <Button>Test</Button>
-    </>
+    <div className="layout">
+      <Field />
+    </div>
   )
 }
 
