@@ -1,9 +1,8 @@
 export const CARD_NAMES = {
-    'BALOON_DOG': 'baloon-dog',
+    'BALLOON_DOG': 'balloon-dog',
     'BIKE': 'bike',
     'CANDIES': 'candies',
     'CHILDREN': 'children',
-    'COVER': 'cover',
     'CRAYON': 'crayon',
     'DINOSAUR': 'dinosaur',
     'FATHER': 'father',

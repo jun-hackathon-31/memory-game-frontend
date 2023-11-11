@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Image } from 'react-bootstrap';
 import './Card.css';
 
-const CustomCard = ({ card }) => {
+const CustomCard = ({ cardUrl }) => {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const handleClick = () => {
@@ -12,7 +12,7 @@ const CustomCard = ({ card }) => {
     return (
         <div className={isFlipped ? 'custom-card flipped' : 'custom-card'} onClick={handleClick}>
             <div className='front'>
-                <Image src={card.img} fluid />
+                <Image src={cardUrl} fluid />
             </div>
             <div className='back'>
                 <Image src='src/images/cover.svg' fluid />

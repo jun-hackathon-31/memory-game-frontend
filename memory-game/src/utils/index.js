@@ -1,4 +1,4 @@
-import { CARD_NAMES } from "../components/constants";
+import { CARD_NAMES } from "../constants";
 
 export function generateField() {
     // the size of the field is 4
