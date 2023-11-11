@@ -1,6 +1,6 @@
 .custom-card {
-    width: 300px;
-    height: 300px;
+    width: 100px;
+    height: 100px;
     border: 1px solid black;
     border-radius: 8px;
     cursor: pointer;
