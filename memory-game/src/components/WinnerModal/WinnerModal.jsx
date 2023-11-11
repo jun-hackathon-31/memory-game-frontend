@@ -1,7 +1,7 @@
 import { Modal, Button } from 'react-bootstrap';
 import './WinnerModal.css';
 
-function WinnerModal(/* {show, onHide} */) {
+function WinnerModal(/* {show, onHide, moves} */) {
     return (
         <Modal
             // show={show}
@@ -13,6 +13,7 @@ function WinnerModal(/* {show, onHide} */) {
 
             <Modal.Body>
                 <h3>Уровень пройден!</h3>
+                {/* <p>Всего ходов: {moves}</p> */}
             </Modal.Body>
 
             <Modal.Footer>
