@@ -8,7 +8,7 @@ function Header({ movesCount, restartField }) {
                 <img src='/rotate-right-solid.svg' />
             </button>
         </div>
-    )
+    );
 }
 
 export default Header;
