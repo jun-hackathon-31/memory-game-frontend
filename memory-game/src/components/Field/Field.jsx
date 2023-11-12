@@ -105,7 +105,7 @@ function Field({ field, setMovesCount, openModal }) {
     })
   };
 
-  // check if everything is guessed
+  // Check if everything is guessed
 
   const checkIfWon = () => {
     for (let row of fieldState) {
