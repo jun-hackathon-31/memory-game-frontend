@@ -1,0 +1,3 @@
+.card.disabled {
+    pointer-events: none;
+}

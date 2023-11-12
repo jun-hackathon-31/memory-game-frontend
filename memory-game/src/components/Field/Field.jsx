@@ -2,6 +2,7 @@ import { Card as BootstrapCard, Container, Row, Col } from 'react-bootstrap';
 import { CARD_NAMES } from '../../constants';
 import { useEffect, useState } from 'react';
 import CustomCard from '../Card/Card';
+import './Field.css';
 
 // eslint-disable-next-line no-unused-vars
 function Field({ field, movesCount, setMovesCount}) {
@@ -15,6 +16,7 @@ function Field({ field, movesCount, setMovesCount}) {
 
   const [fieldState, setFieldState] = useState(initializeFieldState());
   const [move, setMove] = useState([]);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const handleClick = ({ rowIndex, colIndex }) => {
     if (move.length < 2) {
@@ -40,6 +42,7 @@ function Field({ field, movesCount, setMovesCount}) {
 
   useEffect(() => {
     if (move.length === 2) {
+      setIsDisabled(true);
 
       const [firstCard, secondCard] = move;
       
@@ -50,7 +53,7 @@ function Field({ field, movesCount, setMovesCount}) {
       } else {
         console.log('NO');
         // flip cards back after time
-        setTimeout(() => closeTwoCards(move), 1500);
+        setTimeout(() => closeTwoCards(move), 1000);
       }
       // reset move
       setMove([]);
@@ -79,6 +82,7 @@ function Field({ field, movesCount, setMovesCount}) {
         isGuessed: true
       };
 
+      setIsDisabled(false);
       return fieldState;
     })
   }
@@ -103,6 +107,7 @@ function Field({ field, movesCount, setMovesCount}) {
         isGuessed: prevState[secondRowIndex][secondColIndex].isGuessed
       };
 
+      setIsDisabled(false);
       return fieldState;
     })
   };
@@ -112,6 +117,7 @@ function Field({ field, movesCount, setMovesCount}) {
   useEffect(() => {
     setFieldState(initializeFieldState());
     setMove([]);
+    setIsDisabled(false);
   }, [field]);
 
   const initializeCards = () => field.map((row, i) => {
@@ -133,8 +139,8 @@ function Field({ field, movesCount, setMovesCount}) {
   const cards = initializeCards();
 
   return (
-    <BootstrapCard>
-      <Container className="p-2">{cards}</Container>   
+    <BootstrapCard className={`${isDisabled ? 'disabled' : ''}`}>
+      <Container className="p-2">{cards}</Container>
     </BootstrapCard>
   );
 }
