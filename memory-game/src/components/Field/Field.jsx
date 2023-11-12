@@ -4,8 +4,7 @@ import { useEffect, useState } from 'react';
 import CustomCard from '../Card/Card';
 import './Field.css';
 
-// eslint-disable-next-line no-unused-vars
-function Field({ field, movesCount, setMovesCount}) {
+function Field({ field, setMovesCount, openModal }) {
   const initializeFieldState = () => {
     return field.map((row) =>
       row.map(() => {
@@ -20,8 +19,6 @@ function Field({ field, movesCount, setMovesCount}) {
 
   const handleClick = ({ rowIndex, colIndex }) => {
     if (move.length < 2) {
-      console.log(rowIndex, colIndex);
-      
       setFieldState((prevState) => {
         const fieldState = [...prevState];
         fieldState[rowIndex] = [...fieldState[rowIndex]];
@@ -31,10 +28,8 @@ function Field({ field, movesCount, setMovesCount}) {
         };
         return fieldState;
       })
-      console.log(fieldState);
       
       setMove((prevState) => [...prevState, { rowIndex, colIndex }]);
-      console.log(move);
     }
   };
   
@@ -48,10 +43,8 @@ function Field({ field, movesCount, setMovesCount}) {
       
       if (field[firstCard.rowIndex][firstCard.colIndex] ===
           field[secondCard.rowIndex][secondCard.colIndex]) {
-        console.log('YES');
         makeCardsGuessed(move);
       } else {
-        console.log('NO');
         // flip cards back after time
         setTimeout(() => closeTwoCards(move), 1000);
       }
@@ -111,6 +104,22 @@ function Field({ field, movesCount, setMovesCount}) {
       return fieldState;
     })
   };
+
+  // check if everything is guessed
+
+  const checkIfWon = () => {
+    for (let row of fieldState) {
+      for (let element of row) {
+        if (!element.isGuessed) {
+          return;
+        }
+      }
+    }
+
+    openModal();
+  }
+
+  useEffect(() => { checkIfWon(); }, [fieldState]);
 
   // restart field
 
