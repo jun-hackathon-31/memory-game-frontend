@@ -1,17 +1,11 @@
-import { useState } from 'react';
 import { Image } from 'react-bootstrap';
 import './Card.css';
 
-const CustomCard = ({ cardUrl, isFlipped, coordinates, handleClick }) => {
-    // const [isFlipped, setIsFlipped] = useState(false);
+const CustomCard = ({ cardUrl, isFlipped, coordinates, handleClick, isGuessed }) => {
     const { rowIndex, colIndex } = coordinates;
 
-    // const handleClick = () => {
-    //     // setIsFlipped(true);
-    // };
-
     return (
-        <div className={isFlipped ? 'custom-card flipped' : 'custom-card'} onClick={() => { handleClick({ rowIndex, colIndex }) }}>
+        <div className={`custom-card ${isFlipped ? 'flipped' : ''} ${isGuessed ? 'guessed' : ''}`} onClick={() => { handleClick({ rowIndex, colIndex }) }}>
             <div className='front'>
                 <Image src={cardUrl} fluid />
             </div>

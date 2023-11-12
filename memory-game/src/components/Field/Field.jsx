@@ -40,6 +40,7 @@ function Field() {
       if (field[firstCard.rowIndex][firstCard.colIndex] ===
           field[secondCard.rowIndex][secondCard.colIndex]) {
         console.log('YES');
+        makeCardsGuessed(move);
       } else {
         console.log('NO');
         // flip cards back after time
@@ -50,6 +51,30 @@ function Field() {
     }
 
   }, [move, field]);
+
+  const makeCardsGuessed = (cards) => {
+    const [firstCard, secondCard] = cards;
+    const { rowIndex: firstRowIndex, colIndex: firstColIndex } = firstCard;
+    const { rowIndex: secondRowIndex, colIndex: secondColIndex } = secondCard;
+
+    setFieldState((prevState) => {
+      const fieldState = [...prevState];
+
+      fieldState[firstRowIndex] = [...fieldState[firstRowIndex]];
+      fieldState[secondRowIndex] = [...fieldState[secondRowIndex]];
+
+      fieldState[firstRowIndex][firstColIndex] = {
+        isFlipped: prevState[firstRowIndex][firstColIndex].isFlipped,
+        isGuessed: true
+      };
+      fieldState[secondRowIndex][secondColIndex] = {
+        isFlipped: prevState[secondRowIndex][secondColIndex].isFlipped,
+        isGuessed: true
+      };
+
+      return fieldState;
+    })
+  }
 
   const closeTwoCards = (cards) => {
     const [firstCard, secondCard] = cards;
@@ -82,6 +107,7 @@ function Field() {
           <CustomCard
             cardUrl={`src/images/${CARD_NAMES[element]}.svg`}
             isFlipped={fieldState[i][j].isFlipped}
+            isGuessed={fieldState[i][j].isGuessed}
             coordinates={{ rowIndex: i, colIndex: j }}
             handleClick={handleClick}
           />
