@@ -1,15 +1,19 @@
 import { Card as BootstrapCard, Container, Row, Col } from 'react-bootstrap';
 import { CARD_NAMES } from '../../constants';
-import { generateField } from '../../utils';
 import { useEffect, useState } from 'react';
 import CustomCard from '../Card/Card';
 
 // eslint-disable-next-line no-unused-vars
-function Field({movesCount, setMovesCount}) {
-  const [field,] = useState(generateField());
-  const [fieldState, setFieldState] = useState(field.map((row) => row.map(() => {
-    return { isFlipped: false, isGuessed: false }
-  })));
+function Field({ field, movesCount, setMovesCount}) {
+  const initializeFieldState = () => {
+    return field.map((row) =>
+      row.map(() => {
+        return { isFlipped: false, isGuessed: false }
+      }
+    ));
+  };
+
+  const [fieldState, setFieldState] = useState(initializeFieldState());
   const [move, setMove] = useState([]);
 
   const handleClick = ({ rowIndex, colIndex }) => {
@@ -30,11 +34,12 @@ function Field({movesCount, setMovesCount}) {
       setMove((prevState) => [...prevState, { rowIndex, colIndex }]);
       console.log(move);
     }
-  }
+  };
+  
+  // compare cards
 
   useEffect(() => {
     if (move.length === 2) {
-      // compare cards
 
       const [firstCard, secondCard] = move;
       
@@ -102,7 +107,14 @@ function Field({movesCount, setMovesCount}) {
     })
   };
 
-  const cards = field.map((row, i) => {
+  // restart field
+
+  useEffect(() => {
+    setFieldState(initializeFieldState());
+    setMove([]);
+  }, [field]);
+
+  const initializeCards = () => field.map((row, i) => {
     return <Row key={`row ${i}`} className="my-2 mx-2" style={{ gap: '0.5rem' }}>
       {row.map((element, j) =>
         <Col className="px-0" key={`card [${i}, ${j}]`}>
@@ -116,7 +128,9 @@ function Field({movesCount, setMovesCount}) {
         </Col>
       )}
     </Row>
-  });
+  })
+
+  const cards = initializeCards();
 
   return (
     <BootstrapCard>
