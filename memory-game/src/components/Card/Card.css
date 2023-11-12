@@ -11,6 +11,7 @@
 
 .custom-card.flipped {
     transform: rotateY(180deg);
+    pointer-events: none;
 }
 
 .custom-card.guessed {
