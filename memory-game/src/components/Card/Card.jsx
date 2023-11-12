@@ -10,7 +10,7 @@ const CustomCard = ({ cardUrl, isFlipped, coordinates, handleClick, isGuessed })
                 <Image src={cardUrl} fluid />
             </div>
             <div className='back'>
-                <Image src='src/images/cover.svg' fluid />
+                <Image src='/cover.svg' fluid />
             </div>
         </div>
     )

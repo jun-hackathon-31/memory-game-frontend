@@ -134,7 +134,7 @@ function Field({ field, setMovesCount, openModal }) {
       {row.map((element, j) =>
         <Col className="px-0" key={`card [${i}, ${j}]`}>
           <CustomCard
-            cardUrl={`src/images/${CARD_NAMES[element]}.svg`}
+            cardUrl={`/${CARD_NAMES[element]}.svg`}
             isFlipped={fieldState[i][j].isFlipped}
             isGuessed={fieldState[i][j].isGuessed}
             coordinates={{ rowIndex: i, colIndex: j }}
