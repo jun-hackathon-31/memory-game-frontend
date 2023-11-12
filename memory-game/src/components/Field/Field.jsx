@@ -4,7 +4,8 @@ import { generateField } from '../../utils';
 import { useEffect, useState } from 'react';
 import CustomCard from '../Card/Card';
 
-function Field() {
+// eslint-disable-next-line no-unused-vars
+function Field({movesCount, setMovesCount}) {
   const [field,] = useState(generateField());
   const [fieldState, setFieldState] = useState(field.map((row) => row.map(() => {
     return { isFlipped: false, isGuessed: false }
@@ -48,9 +49,10 @@ function Field() {
       }
       // reset move
       setMove([]);
+      setMovesCount((prev) => prev + 1);
     }
 
-  }, [move, field]);
+  }, [move, field, setMovesCount]);
 
   const makeCardsGuessed = (cards) => {
     const [firstCard, secondCard] = cards;
